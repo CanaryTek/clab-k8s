@@ -1,0 +1,46 @@
+## Lab config
+# Syntax: YAML
+---
+lab_name: Kubernetes_Manual
+prefix: k8s-kubeadm
+images:
+ default:
+   name: ubuntu18.iso
+   url: http://releases.ubuntu.com/18.04/ubuntu-18.04.3-live-server-amd64.iso
+vms:
+ master01:
+   name: master01
+   ram: 2048
+   cpus: 2
+   bridge: virbr0
+   net:
+     net1: 
+       mac: 52:54:00:64:a1:01
+       bridge: virbr0
+   disks:
+     disk1:
+       size: 40
+ node01:
+   name: node01
+   ram: 2048
+   cpus: 2
+   bridge: br0
+   net:
+     net1: 
+       mac: 52:54:00:64:a2:01
+       bridge: virbr0
+   disks:
+     disk1:
+       size: 40
+ node02:
+   name: node02
+   ram: 2048
+   cpus: 2
+   bridge: br0
+   net:
+     net1: 
+       mac: 52:54:00:64:a2:02
+       bridge: virbr0
+   disks:
+     disk1:
+       size: 40
