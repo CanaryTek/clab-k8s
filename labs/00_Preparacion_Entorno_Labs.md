@@ -5,39 +5,6 @@
   * Lab montado con Ubuntu 18.04
   * Kubernetes montado con kubeadm
 
-## Redes
-
-  * Lab1
-    * master01: 192.168.124.110
-    * node01: 192.168.124.111
-    * node02: 192.168.124.112
-    * rango LB: 192.168.124.40-192.168.124.49
-  * Lab2
-    * master01: 192.168.124.120
-    * node01: 192.168.124.121
-    * node02: 192.168.124.122
-    * rango LB: 192.168.124.50-192.168.124.59
-  * Lab3
-    * master01: 192.168.124.130
-    * node01: 192.168.124.131
-    * node02: 192.168.124.132
-    * rango LB: 192.168.124.60-192.168.124.69
-  * Lab4
-    * master01: 192.168.124.140
-    * node01: 192.168.124.141
-    * node02: 192.168.124.142
-    * rango LB: 192.168.124.70-192.168.124.79
-  * Lab5
-    * master01: 192.168.124.150
-    * node01: 192.168.124.151
-    * node02: 192.168.124.152
-    * rango LB: 192.168.124.80-192.168.124.89
-  * Lab6
-    * master01: 192.168.124.160
-    * node01: 192.168.124.161
-    * node02: 192.168.124.162
-    * rango LB: 192.168.124.90-192.168.124.99
-
 ## Preparacion maquinas
 
 Instalamos una maquina desde CD y el resto copiamos el disco y cambiamos nombre e ip
