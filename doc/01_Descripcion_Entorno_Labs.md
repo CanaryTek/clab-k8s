@@ -1,6 +1,12 @@
 # Labs de practicas para cursos k8s en CloudLab
 
-## Redes
+## Acceso
+
+  * Conectar por SSH al master de cada lab
+  * Desde el master, se puede acceder a los worker usando en nombre (estan en el /etc/hosts)
+  * El usuario/clave de todas las maquinas es linux/linux. El usuario tiene permiso de sudo sin contraseña
+
+## Entornos
 
   * Lab1
     * master01: 192.168.124.110
