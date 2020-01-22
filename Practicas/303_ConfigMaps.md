@@ -50,3 +50,59 @@ spec:
 kubectl rollout restart deployment webapp-color ; kubectl get pod -w
 ``` 
 
+## Extra
+
+  * Crear un Pod nginx que muestre una pagina con el nombre del grupo de practicas
+  * Se debe leer la pagina desde un ConfigMap
+
+  * Crear ConfigMap
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-data
+data:
+  index.html: "GRUPO 01"
+```
+
+  * Crear Pod
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx1
+  name: nginx1
+spec:
+  containers:
+  - image: nginx
+    name: nginx1
+    volumeMounts:
+      - mountPath: /usr/share/nginx/html
+        name: data-vol
+  volumes:
+    - name: data-vol
+      configMap: 
+        name: nginx-data
+```
+
+  * Crear Service
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx1
+  name: nginx1
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx1
+  type: LoadBalancer
+```
