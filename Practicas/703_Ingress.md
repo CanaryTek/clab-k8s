@@ -73,7 +73,7 @@ metadata:
     run: blue
   name: blue
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       run: blue

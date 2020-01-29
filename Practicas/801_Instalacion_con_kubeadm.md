@@ -12,6 +12,12 @@ https://kubernetes.io/docs/setup/independent/install-kubeadm/
 for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo swapoff -a; cat /etc/fstab | grep -v swap | sudo tee /etc/fstab" ; done
 ```
 
+  * Verificar que ninguna maquina tiene activado swap
+
+```bash
+for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "free" ; done
+```
+
   * Instalar repos
 
 ```bash
