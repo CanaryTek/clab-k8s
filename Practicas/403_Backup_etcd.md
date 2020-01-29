@@ -190,3 +190,26 @@ kubectl get pod
 
   * Reiniciar lo nodos worker
   * ¿Cual es el estado final? ¿Funciona ahora la app?
+
+## Jugar con etcd
+
+En el lab, etcd se ejecuta en un contenedor, para ejecutar el cliente etcdctl debemos hacerlo dentro de ese contenedor. Para facilitar el trabajo, podemos definir un alias:
+
+```
+alias ketcdctl="kubectl exec etcd-master01 -n kube-system -- etcdctl --cacert /etc/kubernetes/pki/etcd/ca.crt --key /etc/kubernetes/pki/etcd/server.key --cert /etc/kubernetes/pki/etcd/server.crt"
+```
+
+Listamos toda la informacion de ETCD
+
+
+```
+ketcdctl get / --prefix --keys-only
+```
+
+Consultamos los nodos
+
+
+```
+ketcdctl get /registry/minions --prefix -w json | json_pp  | less
+```
+
