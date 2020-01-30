@@ -5,43 +5,15 @@ En este curso trataremos la temática básica de gestión de cluster kubernetes,
 ## Temario
 
   * Dia 1:
-     * [00 Preparacion de los Entornos de Labs](labs/00_Preparacion_Entorno_Labs.md)
-     * [01 Descripcion de los Entornos de Labs](labs/01_Descripcion_Entorno_Labs.md)
-     * [02 Comandos básicos kubectl](labs/02_Comandos_Basicos.md)
-     * [03 Introduccion a Docker](labs/03_Introduccion_Docker.md)
-       - Conceptos
-       - Comandos basicos
-       - Creacion de imagenes
-       - Repositorios
-       - Command vs entrypoint
-     * [10 Conceptos_Basicos Kubernetes](labs/11_Conceptos_Basicos_K8s.md)
-     * Practicas
-       * Paseo por el entorno
-         * Ver nodos
-         * Ver Pods
-         * Ver namespaces
-      * Plano de control
-         * Ver pods en kube-system
-         * Ver manifests de los pods de control (y configuraciones)
-         * Ver procesos con "ps ax"
-      * Jugar con etcd
-  * Dia 2:
-     * [20 Planificador de procesos](labs/20_Planificador_Procesos.md)
-     * [30 Logs y monitorizacion](labs/30_Logs_Monitorizacion.md)
-        * Instalar dashboard
-     * [40 Gestion de ciclo de vida de aplicaciones]()
-     * [50 Mantenimiento del cluster]()
-     * [60 Seguridad]()
-     * [70 Almacenamiento]()
-        * PV en NFS
-     * [80 Redes]()
-        * MetalLB
-     * [90 Instalacion de un cluster k8s]()
-     * [100 Resolucion de problemas]()
+    * Introducción
+      * [00 Preparacion de los Entornos de Labs](docs/00_Preparacion_Entorno_Labs.md)
+      * [01 Descripcion de los Entornos de Labs](docs/01_Descripcion_Entorno_Labs.md)
+      * [02 Comandos básicos kubectl](labs/02_Comandos_Basicos.md)
 
 ## Practicas
 
   * Tema 1: Conceptos Basicos
+    * [100 Componentes](Practicas/100_Componentes.md)
     * [101 Pods](Practicas/101_Pods.md)
     * [102 ReplicaSets](Practicas/102_ReplicaSets.md)
     * [103 Deployments](Practicas/103_Deployements.md)
