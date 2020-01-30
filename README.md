@@ -4,16 +4,12 @@ En este curso trataremos la temática básica de gestión de cluster kubernetes,
 
 ## Temario
 
-  * Dia 1:
-    * Introducción
-      * [00 Preparacion de los Entornos de Labs](docs/00_Preparacion_Entorno_Labs.md)
-      * [01 Descripcion de los Entornos de Labs](docs/01_Descripcion_Entorno_Labs.md)
-      * [02 Comandos básicos kubectl](labs/02_Comandos_Basicos.md)
-
-## Practicas
+  * Introducción
+    * [00 Preparacion de los Entornos de Labs](docs/00_Preparacion_Entorno_Labs.md)
+    * [01 Descripcion de los Entornos de Labs](docs/01_Descripcion_Entorno_Labs.md)
 
   * Tema 1: Conceptos Basicos
-    * [100 Componentes](Practicas/100_Componentes.md)
+    * [100 Intro K8s y kubectl](Practicas/100_Intro_K8s_kubectl.md)
     * [101 Pods](Practicas/101_Pods.md)
     * [102 ReplicaSets](Practicas/102_ReplicaSets.md)
     * [103 Deployments](Practicas/103_Deployements.md)
