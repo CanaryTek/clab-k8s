@@ -12,7 +12,7 @@ En este curso trataremos la temática básica de gestión de cluster kubernetes,
     * [100 Intro K8s y kubectl](Practicas/100_Intro_K8s_kubectl.md)
     * [101 Pods](Practicas/101_Pods.md)
     * [102 ReplicaSets](Practicas/102_ReplicaSets.md)
-    * [103 Deployments](Practicas/103_Deployements.md)
+    * [103 Deployments](Practicas/103_Deployments.md)
     * [104 Namespaces](Practicas/104_Namespaces.md)
     * [105 Services](Practicas/105_Services.md)
     * [106 MetalLB](Practicas/106_MetalLB.md)
