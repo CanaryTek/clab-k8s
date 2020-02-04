@@ -2,6 +2,10 @@
 
   * Desplegar varios Pods desde script
 
+```
+sh Practicas/Scripts/202_1_Create_Pods.sh
+```
+
   * Ver Pods
 
   * Los pods se han organizado con labels:
