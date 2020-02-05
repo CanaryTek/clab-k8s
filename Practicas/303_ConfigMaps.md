@@ -27,6 +27,11 @@ spec:
 ```
 
   * Crear servicio tipo "LoadBalancer" para acceder desde fuera
+
+```
+kubectl expose deployment webapp-color --port 80 --target-port 8080 --type LoadBalancer
+```
+
   * Acceder a la IP del servicio
   * ¿Que color se muestra?
 
@@ -34,11 +39,38 @@ spec:
 
   * La imagen webapp-color permite definir el color mediante la variable APP_COLOR
   * Redefinir el Deployment anterior para que muestre color rojo (APP_COLOR=red)
+  * Pista: Añadir variable de entorno APP_COLOR=red como atributo del contenedor (ojo con la indentacion)
+
+```
+        env:
+        - name: APP_COLOR
+          value: red
+```
 
 ## Crear configmap
 
-  * Crear un ConfigMap app-config con APP_COLOR=green
+  * Crear un ConfigMap app-config con APP_COLOR=blue
+
+```
+kubectl create configmap app-config --from-literal="APP_COLOR=blue"
+```
+
+  * Verificar
+
+```
+kubectl describe configmap app-config
+```
+
   * Modificar el Deployment para que lea el entorno desde ese configMap
+    * Pista: Editar la definicion del "env" para que se lea de configmap
+
+```
+        envFrom:
+          - configMapRef:
+              name: app-config
+```
+
+  * Recargar página. ¿A cambiado el color al del configmap?
 
 ## Editar configmap
 
@@ -106,3 +138,4 @@ spec:
     run: nginx1
   type: LoadBalancer
 ```
+

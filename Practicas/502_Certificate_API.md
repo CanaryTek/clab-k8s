@@ -29,7 +29,7 @@ El siguiente paso es crear el ojeto CertificateSigningRequest en kubernetes
 apiVersion: certificates.k8s.io/v1beta1
 kind: CertificateSigningRequest
 metadata:
-  name: 
+  name: NOMBRE 
 spec:
   groups:
   - system:authenticated
@@ -41,6 +41,10 @@ spec:
 ```
 
   * ¡OJO! El contenido del certificado debe estar en base64 y sin saltos de línea (se pueden borrar saltos de linea con "tr -d'\n' ")
+
+```
+cat kuko.csr | base64 | tr -d '\n'
+```
 
   * Una vez creado, consultar los CSR con
 
@@ -59,7 +63,7 @@ kubectl get csr
 ## Denegar una solicitud
 
   * Repite los pasos anteriores, excepto la aprobación, para crear otro CSR a nombre de "elmalo"
-  * Deniega la solicitud. ¿En que estado queda?
+  * Deniega la solicitud (kubectl certificate deny). ¿En que estado queda?
   * Borra la solicitud
 
 ```

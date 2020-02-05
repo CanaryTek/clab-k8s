@@ -70,6 +70,10 @@ ssh node01 sudo reboot
 
   * Vaciar el nodo01
 
+```
+kubectl drain node01 --ignore-daemonsets
+```
+
   * ¿Cuantos Pods hay y donde se estan ejecutando?
   * ¿Ha habido corte de servicio?
 
@@ -82,6 +86,10 @@ ssh node01 sudo reboot
   * ¿Si ejecutamos un nuevo Pod se ejecutará en node01? ¿Por qué?
 
   * Marcar nodo01 como disponible
+
+```
+kubectl uncordon node01
+```
 
   * ¿Los Pods vuelven al node01? ¿Por qué? ¿Que habría que hacer para que vuelvan?
 
