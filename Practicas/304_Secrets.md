@@ -72,8 +72,22 @@ DB_User=root
 DB_Password=password123
 ```
 
+  * Pista: algo asi...
+
+```
+kubectl create secret generic db-secret --from-literal="key1=value" --from-literal="key2=value2"
+```
+
   * Modificar el Pod "webapp-pod" para usar el Secret anterior como variables de entorno
     * Puede ser necesario eliminar el Pod para volver a crearlo
+
+  * Pista: algo asi...
+
+```
+    envFrom:
+      - secretRef:
+          name: db-secret
+```
 
   * Volver a conectarse al navegador y verificar que funciona 
 
