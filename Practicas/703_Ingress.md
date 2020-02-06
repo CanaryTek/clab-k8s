@@ -160,7 +160,7 @@ spec:
           servicePort: 80
 ```
 
-**NOTA:** Como no disponemos de DNS, hay que apuntar esos nombres a la IP del servicio ingress-nginx. Tambien puede probarse forzando la cabecera Host con curl: curl -H "Host: green.myapp.local" http://IP_SERVICIO_ingress_nginx
+**NOTA:** Como no disponemos de DNS, hay que apuntar esos nombres a la IP del servicio ingress-nginx en el fichero hosts de la maquina del alumno. Tambien puede probarse forzando la cabecera Host con curl: curl -H "Host: green.myapp.local" http://IP_SERVICIO_ingress_nginx
 
 ## Significado de externalTrafficPolicy en el Service
 
@@ -187,8 +187,8 @@ kubectl -n ingress-nginx logs -f nginx-ingress-controller-5556bd798f-lcrpw
   * La razon por la que vemos la IP del cluster es que por defecto tenemos configurado externalTrafficPolicy=Cluster en el servicio nginx_ingress
 
   * El parametro esternalTrafficPolicy puede tener los siguientes valores:
-    * Cluster: Con este valor, las peticiones externas se "reparten" entre todos los pods del cluster que dan ese servicio (endpoints). Para poder hacer esto, es necesario "enmascarar" la IP de origen con la del nodo por el que esta entrando el tráfico. Este modo es el que se usa por defecto porque es el necesario para "balancear" la carga entre pods en diferentes nodos, pero tiene el inconveniente de "ocultar" la IP de origen real
-    * Local: Con este valor, se mantiene la IP de origen real de la petición, pero debido a eso, solo se puede enviar la peticion a Pods que se esten ejecutando en el mismo nodo por donde esta entrando el tráfico. Por eso este modo no es ideal cuando necesitamos balancear carga
+    * **Cluster:** Con este valor, las peticiones externas se "reparten" entre todos los pods del cluster que dan ese servicio (endpoints). Para poder hacer esto, es necesario "enmascarar" la IP de origen con la del nodo por el que esta entrando el tráfico. Este modo es el que se usa por defecto porque es el necesario para "balancear" la carga entre pods en diferentes nodos, pero tiene el inconveniente de "ocultar" la IP de origen real
+    * **Local:** Con este valor, se mantiene la IP de origen real de la petición, pero debido a eso, solo se puede enviar la peticion a Pods que se esten ejecutando en el mismo nodo por donde esta entrando el tráfico. Por eso este modo no es ideal cuando necesitamos balancear carga
 
   * Editamos el servicio y cambiar este parametro a Local
 

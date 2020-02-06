@@ -34,7 +34,7 @@ spec:
 ```
 
   * ¿En que estado esta el PVC? ¿En que estado esta el PV? ¿Por que no se asocia al PV anterior?
-    * Arreglarlo adaptando el PVC en lo que sea necesario
+    * Arreglarlo adaptando el PVC en lo que sea necesario (Pista: revisa "accessModes")
   * Una vez arreglado, ¿En que estado quedan el PV y el PVC?
     * ¿Que espacio hay disponible en el PVC?
 
@@ -66,7 +66,7 @@ spec:
 ```
 
   * ¿En que estado esta el Pod? ¿Por que?
-    * Resolver el problema
+    * Resolver el problema (Pista: Revisa el claimName, debe coincidir con el nombre del PVC que hemos creado)
 
 ## Escribir datos y verificar que es "persistente"
 
@@ -87,19 +87,16 @@ ssh node01 ls /pv/data
 ssh node02 ls /pv/data
 ```
 
-  * Borrar el Pod y volver a crearlo, pero forzando que se ejecute en el nodo donde estan los datos
-    * Pista: Definir nodeName
-  * ¿Los datos siguen ahi?
-
-  * Borrar el Pod y volver a crearlo, pero forzando que se ejecute **en el otro nodo**
-    * Pista: Definir nodeName
-  * ¿Los datos siguen ahi?
+  * ¿Que pasaría si el pod se ejecuta en otro nodo?
   * ¿Nos vale el tipo de volumen hostPath como solucion de PV?
 
 ## Borrar PVC
 
   * Borrar PVC en uso. ¿En que estado queda? (Si la terminal no responde, abre otras sesion SSH)
   * Eliminar el Pod de arriba. ¿Que pasa con el PVC? ¿y con el PV?
+
+## Reutilización de PV
+
   * Vuelve a crear el PVC. ¿En que estado queda? ¿Por que no se enlaza al PV?
     * ¿Que atributo del PV deberiamos cambiar para que los PV se reutilicen?
 

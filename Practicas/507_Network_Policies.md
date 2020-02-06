@@ -95,6 +95,31 @@ spec:
   * Modificar las network policies de forma que la app vuelva a funcionar, pero este protegida (no vale permitir todo)
     * PISTA: Usar "kubectl describe netpol" para ver como se estan interpretando los selectores
 
+  * Solucion:
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mysql-policy
+spec:
+  podSelector:
+    matchLabels:
+      name: mysql
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            name: webapp-pod
+      ports:
+      - protocol: TCP
+        port: 3306
+  egress: []
+```
+
 ## Aplicar NetworkPolicy a webapp-pod
 
   * Aplicar la siguiente NetworkPolicy
@@ -118,3 +143,38 @@ spec:
   * Volver a probar la conexion. ¿Funciona? ¿Por que? (OJO: puede ser necesario esperar un poco para ver el resultado)
   * Modificar las network policies de forma que la app vuelva a funcionar, pero este protegida (no vale permitir todo)
     * ¡OJO! La configuracion de conexion a la bbdd esta por nombre del servicio (sql01), asi que hay que permitir las consultas DNS en el Egress
+
+  * Solucion:
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: webapp-policy
+spec:
+  podSelector:
+    matchLabels:
+      name: webapp-pod
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+    - from: []
+      ports:
+        - protocol: TCP
+          port: 8080
+  egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            name: mysql
+      ports:
+        - protocol: TCP
+          port: 3306
+    - ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+```
+
