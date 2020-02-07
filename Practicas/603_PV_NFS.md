@@ -36,7 +36,7 @@ sudo mkdir /nfs
   * Forzamos recarga de exports
 
 ```
-sudo esportfs -a -v
+sudo exportfs -a -v
 ```
 
   * En los nodos, instalamos nfs-client y verificamos que podemos montarlo
