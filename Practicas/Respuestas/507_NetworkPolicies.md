@@ -1,3 +1,8 @@
+# Solucion de NetworkPolicies
+
+  * NetworkPolicy de mysql:
+
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -18,7 +23,11 @@ spec:
       - protocol: TCP
         port: 3306
   egress: []
----
+```
+
+  * NetworkPolicy de webapp
+
+```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -48,3 +57,5 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
+```
+

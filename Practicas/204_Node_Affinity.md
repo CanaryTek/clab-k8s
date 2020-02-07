@@ -1,5 +1,20 @@
 # Node Affinity
 
+## Plantilla
+
+Aunque se puede encontrar en la doc de K8s, esta es la plantilla de la estructura de "nodeAffinity"
+
+```
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key:
+            operator:
+            values:
+```
+
 ## Node Affinity simple
 
   * Etiquetar un nodo

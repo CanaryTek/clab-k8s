@@ -56,6 +56,10 @@ kubectl apply -f recreate.yaml
   * ¿Se ha producido corte del servicio? ¿Por qué?
   * Ver historico de eventos del deploy
 
+```
+kubectl describe deployment recreate
+```
+
   * Ver replicasets
     * ¿Cuantos hay?
     * ¿Que valor tiene la variable VERSION en el replicaset activo?
@@ -114,12 +118,16 @@ kubectl apply -f rolling.yaml
   * Editar el fichero y modificar la variable version de 1.1 a 1.2 y aplicar
 
 ```bash
-kubectl apply -f recreate.yaml
+kubectl apply -f rolling.yaml
 ```
 
   * ¿Se ha producido corte del servicio? ¿Por qué?
   * Ver historico de eventos del deploy
     * ¿Que diferencia hay con el anterior (estrategia rercreate)?
+
+```
+kubectl describe deployment rolling
+```
 
   * Ver replicasets
     * ¿Cuantos hay?
@@ -140,11 +148,11 @@ kubectl apply -f recreate.yaml
   * Ver estado de los replicaset
   * Hacer rollback del deploy
 
+```
+kubectl rollout undo deployment rolling
+```
+
   * Ver detalles de un Pod cualquiera del deploy
     * ¿Que valor tiene la variable VERSION?
   * ¿Como se ha hecho el rollback? (pista: ¿cual es el replicaset activo?)
 
-## Otras
-
-  * Rgistro de cambios (opcion --record)
-  * Rollout history y status

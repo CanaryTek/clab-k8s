@@ -4,6 +4,20 @@
 
   * Crear un pod basico que se ejecute como usuario 1000 (nombre: sleeper1, image: busybox, command: "sleep 3600")
 
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleeper1
+spec:
+  securityContext:
+    runAsUser: 1000
+  containers:
+  -  image: busybox
+     name: sleeper1
+     command: ["sleep", "3600"]
+```
+
 ## Interpretar configuracion
 
   * Dado el siguiente Pod
@@ -34,4 +48,25 @@ spec:
 
   * En el contenedor "sleeper1" del primer apartado, intentar cambiar la fecha con "date -s '28 DEC 2020 00:00:00'"
 
+```
+kubectl exec -ti sleeper1 -- date -s "2020-02-05 00:00"
+```
+
   * Editar el Pod para cambiar el usuario a root y añadir la capability SYS_TIME y volver a probar. Puede ser necesario borrar el Pod y volver a crearlo
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleeper1
+spec:
+  containers:
+  -  image: busybox
+     name: sleeper1
+     command: ["sleep", "3600"]
+     securityContext:
+       capabilities:
+         add: [ "SYS_TIME" ]
+```
+
+

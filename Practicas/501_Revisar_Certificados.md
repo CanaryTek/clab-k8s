@@ -6,6 +6,12 @@
     * Como apiserver
     * Como cliente de etcd
     * Como cliente de kubelet
+    * Ejemplo:
+
+```
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text -noout
+```
+
   * ¿A qué nombre está emitido el certificado usado como apiserver?
   * ¿Que duración tienen los certificados?
   * ¿Qué duración tiene el certificado de la CA?

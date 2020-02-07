@@ -6,7 +6,7 @@ Lo que haremos es ejecutar un contenedor con ubuntu en modo interactivo (muy uti
 
 ## Ejecutar contenedor para diagnóstico de red
 
-  * Ejecutaremos un contenedor basado en ubuntu. En este caso usamos ubuntu en lugar de busybox, que es el que emos usado en la mayoria de las prácticas anteriores, porque busybox no tiene en cuenta la opcion "ndots:5" en el resolv.conf
+  * Ejecutaremos un contenedor basado en ubuntu. En este caso usamos ubuntu en lugar de busybox, que es el que hemos usado en la mayoria de las prácticas anteriores, porque busybox no tiene en cuenta la opcion "ndots:5" en el resolv.conf
 
   * Ejecutamos el pod ubuntu en modo interactivo
 
@@ -23,7 +23,52 @@ root@test:/# apt-get -y update
 root@test:/# apt-get -y install iputils-ping
 ```
 
-## Capturar tráfico en el interfaz del contenedor anterior
+## DNS en otros namespaces
+
+  * Desplegar un pod y un servicio en un namespace diferente
+
+```
+kubectl create ns test
+kubectl -n test run nginx --image nginx --generator run-pod/v1
+kubectl -n test expose pod nginx --port 80
+```
+
+  * Verificamos que se este ejecutando
+
+```
+linux@master01:~$ kubectl -n test get pod -o wide
+NAME    READY   STATUS    RESTARTS   AGE   IP          NODE     NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          53s   10.46.0.6   node01   <none>           <none>
+linux@master01:~$ kubectl -n test get svc
+NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+nginx   ClusterIP   10.111.160.10   <none>        80/TCP    53s
+
+```
+
+  * Verificar que el servicio responde
+
+```
+linux@master01:~$ curl http://10.111.160.10
+```
+
+  * En el pod de test, trata de resolver el nombre del servicio y del pod. ¿Que nombre hay que usar en cada caso? ¿Puedes usar curl para conectarte por nombre, tanto al servicio como al Pod?
+
+    * Al Servicio
+
+```
+curl http://nginx.test
+curl http://nginx.test.svc
+curl http://nginx.test.svc.cluster.local
+```
+
+    * Al Pod
+
+```
+curl http://10-44-0-3.test.pod
+curl http://10-44-0-3.test.pod.cluster.local
+```
+
+## Capturar tráfico en el interfaz del contenedor de diagnostico
 
 Vamos a capturar el tráfico desde **fuera del Pod** para aprender tecnicas de diagnóstico de red
 
@@ -173,32 +218,4 @@ Capturing on 'vethwepla52510e'
   * ¿Por que hace tantas consultas?
   * Si hacemos ping a "www.google.com." (con punto final) ¿tambien hace las consultas anteriores? ¿Por que?
 
-## DNS en otros namespaces
 
-  * Desplegar un pod y un servicio en un namespace diferente
-
-```
-kubectl create ns test
-kubectl -n test run nginx --image nginx --generator run-pod/v1
-kubectl -n test expose pod nginx --port 80
-```
-
-  * Verificamos que se este ejecutando
-
-```
-linux@master01:~$ kubectl -n test get pod -o wide
-NAME    READY   STATUS    RESTARTS   AGE   IP          NODE     NOMINATED NODE   READINESS GATES
-nginx   1/1     Running   0          53s   10.46.0.6   node01   <none>           <none>
-linux@master01:~$ kubectl -n test get svc
-NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-nginx   ClusterIP   10.111.160.10   <none>        80/TCP    53s
-
-```
-
-  * Verificar que el servicio responde
-
-```
-linux@master01:~$ curl http://10.111.160.10
-```
-
-  * En el pod de test, trata de resolver el nombre del servicio y del pod. ¿Que nombre hay que usar en cada caso? ¿Puedes usar curl para conectarte por nombre, tanto al servicio como al Pod?

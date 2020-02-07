@@ -10,7 +10,15 @@
 
   * Crear un Role "developer" que pueda listar y crear Pods en el namespace default. (Pista: kubectl create role)
 
+```
+kubectl create role developer --verb=create,list --resource pod
+```
+
   * Crear un RoleBinding para asignar el Role "developer" al usuario "dev-user1". (Pista kubectl create rolebinding)
+
+```
+kubectl create rolebinding dev-user1-developer --role developer --user dev-user1
+```
 
   * Comprobar que el usuario puede listar Pods
 
@@ -34,3 +42,4 @@ kubectl describe pod UN_POD_CUALQUIERA --as dev-user1
 
   * ¿Funciona? ¿Por qué?
   * Hacer los cambios necesarios para que funcione (que dev-user1 pueda ver detalles de los pods)
+    * Pista: Editar el role developer (kubectl edit role developer) y añadir "get" a la lista de verbos

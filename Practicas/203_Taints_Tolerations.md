@@ -1,5 +1,17 @@
 # Taints y Tolerations
 
+## Plantilla
+
+Aunque se puede encontrar en la doc de K8s, esta es la plantilla de la estructura de "tolerations"
+
+```
+tolerations:
+- key:
+  operator:
+  value:
+  effect:
+```
+
 ## Taints a un nodo
 
   * Asignar Taint a los dos nodos worker (taint: os=windows:NoSchedule)
