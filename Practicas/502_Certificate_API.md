@@ -26,17 +26,18 @@ El siguiente paso es crear el ojeto CertificateSigningRequest en kubernetes
   * Crea un fichero YAML partiendo con la siguiente estructura basica
 
 ```
-apiVersion: certificates.k8s.io/v1beta1
+apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
 metadata:
   name: NOMBRE 
 spec:
+  signerName: kubernetes.io/kube-apiserver-client
   groups:
   - system:authenticated
   usages:
   - digital signature
   - key encipherment
-  - server auth
+  - client auth
   request: CONTENIDO_CSR
 ```
 
