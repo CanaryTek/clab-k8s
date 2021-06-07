@@ -24,7 +24,7 @@ metadata:
   namespace: limited
 spec:
   hard:
-    pods: "2"
+    pods: "3"
     limits.cpu: "16"
     limits.memory: 2Gi
     requests.cpu: "16"
@@ -42,7 +42,7 @@ metadata:
   name: test
   namespace: limited
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: test
