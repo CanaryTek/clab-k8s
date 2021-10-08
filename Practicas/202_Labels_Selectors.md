@@ -14,31 +14,32 @@ sh Practicas/Scripts/202_1_Create_Pods.sh
     * app: aplicacion (payroll, crm)
 
   * Localizar (mediante consultas "kubectl get pod") lo siguiente:
-    * Los Pods que forman la aplicacion "crm"
+  
+  * Los Pods que forman la aplicacion "crm"
 
 ```bash
 kubectl get pod -l app=crm
 ```
 
-    * Los Pods que forman la aplicacion "payroll"
+  * Los Pods que forman la aplicacion "payroll"
 
 ```bash
 kubectl get pod -l app=payroll
 ```
 
-    * Los Pods de backend
+  * Los Pods de backend
 
 ```bash
 kubectl get pod -l tier=backend
 ```
 
-    * Los Pods de desarrollo (dev)
+  * Los Pods de desarrollo (dev)
 
 ```bash
 kubectl get pod -l env=dev
 ```
 
-    * El Pod backend de la aplicacion "crm" de produccion
+  * El Pod backend de la aplicacion "crm" de produccion
 
 ```bash
 kubectl get pod -l env=prod,app=crm,tier=backend
