@@ -42,13 +42,26 @@ kubectl get pod -o wide
 ## Gestion de pods y replicas
 
   * Matar uno de los Pod
+
+```bash
+kubectl delete pod "pod_name"
+```
     * ¿Que pasa?
   * Aumentar el numero de replicas
-    * Opcion 1: Editar YAML + "kubectl apply"
+    * Opcion 1: Editar YAML + "kubectl apply" (PISTA: Modificar parámetro "replicas")
     * Opcion 2: con "kubectl scale"
+
+```bash
+kubectl scale --replicas=4 replicaset/frontend
+```
+
   * Disminuir el numero de replicas
 
   * Eliminar ReplicaSet
+
+```bash
+kubectl delete replicaset frontend
+```
     * ¿Que le pasa a los Pod?
 
 ## Resolver problemas
@@ -60,8 +73,8 @@ sh Practicas/Scripts/101_2_Create_RS.sh
 ```
 
   * Cuantos Pods se estan ejecutando?
-  * Hay algun problema? Cual?
-  * Arreglarlo
+  * Hay algun problema? Cual? (PISTA: consulta los detalles de uno de los pods con "kubectl describe pod nombre-pod")
+  * Arreglarlo (PISTA: Debes corregirlo en el ReplicaSet para que se aplique a todos los pod. Ademas, tendras que eliminar los pods erróneos para que el ReplicaSet arranque otros con la definición correcta)
 
 ## Resolver problemas con definicion
 
@@ -92,6 +105,8 @@ END
 kubectl apply -f replicaset2.yaml
 ```
 
-  * ¿Cual es el problema? (puede haber mas de uno)
+  * ¿Cual es el problema? (PISTA: hay mas de un error)
   * Arreglarlo para que los Pod arranquen (editando fichero yaml)
-  * ¿Cuantos ReplicaSets hay?
+    * PISTA 1: En que API se definen los ReplicaSet?
+    * PISTA 2: Recuerda que el ```matchLabels``` del ```seledctor``` debe coincidir con la ```label``` del ```template```
+
