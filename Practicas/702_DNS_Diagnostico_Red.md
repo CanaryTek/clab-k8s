@@ -29,7 +29,7 @@ root@test:/# apt-get -y install iputils-ping
 
 ```
 kubectl create ns test
-kubectl -n test run nginx --image nginx --generator run-pod/v1
+kubectl -n test run nginx --image nginx
 kubectl -n test expose pod nginx --port 80
 ```
 

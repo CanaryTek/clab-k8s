@@ -114,7 +114,7 @@ kubectl delete deploy webapp-color
   * Creamos un nuevo Pod
 
 ```
-kubectl run nginx --image nginx --generator run-pod/v1
+kubectl run nginx --image nginx
 ```
 
 ## Restauramos backup

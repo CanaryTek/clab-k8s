@@ -98,7 +98,7 @@ kubectl uncordon node01
   * Definir un Pod independiente
 
 ```
-kubectl run nginx --image nginx --generator run-pod/v1
+kubectl run nginx --image nginx
 ```
 
   * Verificar que responde: "curl http://IP_DEL_POD"
