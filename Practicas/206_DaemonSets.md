@@ -3,6 +3,9 @@
 ## Ver DaemonSets existentes
 
   * Ver DaemonSets de todos los namespaces
+```bash
+kubectl get ds --all-namespaces
+```
 
 ## Definir DaemonSet
 
