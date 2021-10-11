@@ -26,12 +26,12 @@ kubectl create -f https://raw.githubusercontent.com/kubernetes-sigs/azurefile-cs
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-azuredisk
+  name: pvc-azurefile
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-  storageClassName: managed-csi
+  storageClassName: azurefile-csi
 ```
