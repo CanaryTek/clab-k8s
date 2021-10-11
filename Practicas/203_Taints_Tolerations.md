@@ -15,6 +15,12 @@ tolerations:
 ## Taints a un nodo
 
   * Asignar Taint a los dos nodos worker (taint: os=windows:NoSchedule)
+
+```bash
+kubectl taint nodes node1 os=windows:NoSchedule
+kubectl taint nodes node2 os=windows:NoSchedule
+```
+
   * Arrancar un Pod (nombre: nginx1, imagen: nginx)
     * ¿En que estado esta el Pod? ¿Por que?
   * Eliminar el Taint del nodo02
@@ -33,4 +39,3 @@ tolerations:
   * Ver los Taints del master
   * Ver los "Tolerations" de algun Pod que se este ejecutando en el master
   * Definir un Pod que se pueda ejecutar en el master
-
