@@ -718,3 +718,48 @@ total 4
 
   * Ahora si que nos ejecuta el bash, y vemos que nos posiciona directamente en /tmp (debido a la opcion WORKDIR) y que existe el fichero generado, y su propietario es el usuario "nobody" (el especificado con la opcion USER antes de ejecutar la creacion del fichero)
 
+## Subir imagenes a dockerhub (o otro repositorio)
+
+Ya hemos generado la imagen, pero ahora solo existe en la máquina donde la hemos creado.
+Para poder ejecutarla en otras maquinas (p.ej. en kubernetes) necesitamos subirla a un repositorio
+
+  * Para indicar el repositorio donde queremos subirlo, etiquetamos la imagen
+
+```bash
+linux@master01:~/docker_test$ sudo docker images
+REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
+dockerfile_test                      latest     34bfcc076093   2 minutes ago   101MB
+ubuntu                               18.04      5a214d77f5d7   10 days ago     63.1MB
+linux@master01:~/docker_test$ docker tag dockerfile_test canarytek/dockerfile_test
+linux@master01:~/docker_test$ sudo docker images
+REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
+canarytek/dockerfile_test            latest     efe7d07fca89   2 minutes ago   113MB
+dockerfile_test                      latest     34bfcc076093   3 minutes ago   101MB
+ubuntu                               18.04      5a214d77f5d7   10 days ago     63.1MB
+```
+
+  * Necesitamos tener una cuenta de usuario en dockerhub para subir imagenes. Una vez que la tenemos, iniciamos sesion
+
+```bash
+linux@master01:~/docker_test$ sudo docker login
+```
+
+  * Enviamos la imagen
+
+```bash
+linux@master01:~/docker_test$ sudo docker push canarytek/dockerfile_test
+Using default tag: latest
+The push refers to repository [docker.io/canarytek/dockerfile_test]
+e9e628e15371: Pushed 
+450bed632ad8: Pushed 
+9f10818f1f96: Mounted from library/ubuntu 
+27502392e386: Mounted from library/ubuntu 
+c95d2191d777: Mounted from library/ubuntu 
+latest: digest: sha256:c40f038f0fd9790ab2baa184333e54dfeae6d5627765e79e4b4c2d1f117d9216 size: 1362
+```
+
+  * A partir de este momento, podremos ejecutar esa imagen en cualquier maquina docker, indicando la imagen "canarytek/dockerfile_test"
+    * "canarytek" es la organización o usuario que creó la imagen, y al no definir ningun registro, se asume que es dockerub
+  * Tambien podríamos especificar un registro de imagenes distinto a dockerhub, indicandolo en el tag. 
+    * Por ejemplo: canarytek.azurecr.io/canarytek/dockerfile_test 
+
