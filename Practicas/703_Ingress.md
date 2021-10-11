@@ -116,7 +116,7 @@ spec:
   * Usa el siguiente modelo (hay que adaptarlo)
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -128,10 +128,12 @@ spec:
   - http:
       paths:
       - path: /url
+        pathType: Prefix
         backend:
-          serviceName: url-service
-          servicePort: 80
-
+          service:
+            name: url-service
+            port:
+              number: 80
 ```
 
 ## Configurar Ingress por host
@@ -143,7 +145,7 @@ spec:
   * Usar lo siguiente como modelo
 
 ```
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -155,9 +157,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: host-svc
-          servicePort: 80
+          service:
+            name: host-svc
+            port: 
+              number: 80
 ```
 
 **NOTA:** Como no disponemos de DNS, hay que apuntar esos nombres a la IP del servicio ingress-nginx en el fichero hosts de la maquina del alumno. Tambien puede probarse forzando la cabecera Host con curl: curl -H "Host: green.myapp.local" http://IP_SERVICIO_ingress_nginx
