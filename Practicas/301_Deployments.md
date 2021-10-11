@@ -2,7 +2,7 @@
 
 ## Deploy con estrategia recreate
 
-  * Creamos un deployment con estartegia recreate
+  * Creamos un deployment con estrategia recreate
 
 ```bash
 cat > recreate.yaml <<END
