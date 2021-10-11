@@ -8,6 +8,9 @@ En este curso trataremos la temática básica de gestión de cluster kubernetes,
     * [00 Preparacion de los Entornos de Labs](doc/00_Preparacion_Entorno_Labs.md)
     * [01 Descripcion de los Entornos de Labs](doc/01_Descripcion_Entorno_Labs.md)
 
+  * Tema 0: Introduccion a Docker
+    * [001 Intro Docker](Practicas/001_Intro_Docker.md)
+
   * Tema 1: Conceptos Basicos
     * [100 Intro K8s y kubectl](Practicas/100_Intro_K8s_kubectl.md)
     * [101 Pods](Practicas/101_Pods.md)
