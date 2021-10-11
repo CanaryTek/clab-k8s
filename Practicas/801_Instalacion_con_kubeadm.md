@@ -29,7 +29,7 @@ for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-add-re
   * Instalar kubeadm
 
 ```bash
-for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-get install -y docker.io kubeadm; sudo systemctl enable docker" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-get install -y docker.io kubelet=1.21.5-00 kubeadm=1.21.5-00 kubectl=1.21.5-00; sudo systemctl enable docker" ; done
 ```
 
 ## Inicializar cluster
