@@ -18,6 +18,9 @@ Aunque se puede encontrar en la doc de K8s, esta es la plantilla de la estructur
 ## Node Affinity simple
 
   * Etiquetar un nodo
+```bash
+kubectl label nodes node01 size=Large
+```
   * Crear deployment de 4 replicas
   * Assignar nodeAffinity para que el deployment anterior se ejecute solo en el nodo etiquetado
 
