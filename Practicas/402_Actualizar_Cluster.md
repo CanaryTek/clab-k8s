@@ -50,33 +50,43 @@ spec:
 
 ## Actualizar nodo master
 
+  * Actualizar kubeadm a la ultima version (de paquete)
+    * Los labs estan instalados con la version 1.21.5
+
+  * Verificar la version disponible en apt
+
+```
+sudo apt list -a kubeadm
+```
+
+  * Actualizar kubeadm a la version mas nueva disponible
+
+```
+sudo apt install kubeadm=1.22.2-00 kubelet=1.22.2-00
+```
+
   * Verificar plan de actualizacion
 
 ```
 sudo kubeadm upgrade plan
 ```
 
-  * Verificar la version disponible en apt
-
-```
-sudo apt-cache policy kubeadm
-```
-
-  * Actualizar kubeadm a la version mas nueva disponible
-
-```
-sudo apt-get upgrade kubeadm=1.17.1-00
-```
-
   * Actualizar master a la version mas nueva disponible
 
 ```
-sudo kubeadm upgrade apply v1.17.1
+sudo kubeadm upgrade apply v1.22.2
 ```
 
   * Verificar que durante el proceso no perdemos servicio a la app web
 
   * En nuestro caso no es necesario actualizar kubelet porque al actualizar kubeadm desde paquete, el kubelet de la misma version era una dependencia
+
+  * Verificamos versiones
+
+```
+kubectl version
+kubectl get node
+```
 
 ## Actualizar nodos worker
 
@@ -85,19 +95,19 @@ Hacer esto para cada nodo
   * Vaciar el nodo (en el master)
 
 ```
-kubectl drain node01
+kubectl drain node01 --ignore-daemonsets --delete-emptydir-data
 ```
 
   * Actualizar kubeadm
 
 ```
-sudo apt-get upgrade kubeadm=1.17.1-00
+sudo apt install kubeadm=1.22.2-00 kubelet=1.22.2-00
 ```
 
   * Actualizar configuracion de kubelet
 
 ```
-sudo kubeadm upgrade node --kubelet-version v1.17.1
+sudo kubeadm upgrade node
 ```
 
   * Reiniciar kubelet
