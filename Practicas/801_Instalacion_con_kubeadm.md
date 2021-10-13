@@ -4,6 +4,32 @@ Para mas informacion
 
 https://kubernetes.io/docs/setup/independent/install-kubeadm/
 
+  * Partimos de 3 maquinas con Ubuntu 18.04
+    * Pueden ser máquinas virtuales en VMWare, HyperV, Qemu/KVM, VirtualBox, etc
+    * Config red estatica (luego adaptaremos en cada maquina)
+    * usuario/clave: linux/linux
+  * Cambiar sudoers para que no pida clave
+
+```
+%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+```
+
+  * Crear par de claves ssh y configurar acceso a las 3 máquinas
+  * Preparar /etc/hosts (Adaptar las IP)
+
+```
+192.168.124.110 master01
+192.168.124.111 node01
+192.168.124.112 node02
+```
+
+#### Preparacion de los nodos k8s1.node0{1,2}
+
+  * Copiar el disco del master a las VM de los nodos y arrancarlas
+
+  * Cambiar nombre de los nodos
+
+
 ## Preparacion
 
   * Desactivar swap (editar /etc/fstab y reiniciar o swapoff -a)
