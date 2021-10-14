@@ -23,13 +23,6 @@ https://kubernetes.io/docs/setup/independent/install-kubeadm/
 192.168.124.112 node02
 ```
 
-#### Preparacion de los nodos k8s1.node0{1,2}
-
-  * Copiar el disco del master a las VM de los nodos y arrancarlas
-
-  * Cambiar nombre de los nodos
-
-
 ## Preparacion
 
   * Desactivar swap (editar /etc/fstab y reiniciar o swapoff -a)
