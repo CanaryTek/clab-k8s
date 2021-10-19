@@ -95,7 +95,7 @@ spec:
         name: nginx
         env:
         - name: VERSION
-          value: "1.2"
+          value: "1.1"
         livenessProbe:
           httpGet:
             path: /
