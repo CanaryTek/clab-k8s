@@ -184,5 +184,5 @@ kubectl -n kube-system logs -f kube-apiserver-master01
   * Ejecutar comando en un Pod (p.ej un shell)
 
 ```
-kubectl -n kube-system exec -ti kube-apiserver-master01 sh 
+kubectl -n kube-system exec -ti etcd-master01 -- sh
 ```
