@@ -47,6 +47,12 @@ spec:
 cat kuko.csr | base64 | tr -d '\n'
 ```
 
+  * En versiones modernas del comando "base64" puede usarse la opcion "-w0" para que no segemnte la salida en varias lineas
+
+```
+cat kuko.csr | base64 -w0
+```
+
   * Una vez creado, consultar los CSR con
 
 ```
