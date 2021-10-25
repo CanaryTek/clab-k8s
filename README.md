@@ -57,6 +57,7 @@ En este curso trataremos la temática básica de gestión de cluster kubernetes,
     * [602 PersistentVolumes & PersistentVolumeClaims](Practicas/602_PV_PVC.md)
     * [603 PV en NFS](Practicas/603_PV_NFS.md)
     * [604 StatefulSet vs Deployment](Practicas/604_StatefulSet_vs_Deployment.md)
+    * [605 StatefulSet y local PersistentVolume](Practicas/605_statefulSet_Local_PV.md)
 
   * Tema 7: Redes
     * [701 Service & Iptables](Practicas/701_Service_iptables.md)
