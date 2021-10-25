@@ -110,6 +110,8 @@ spec:
           - node01
 ```
 
+  * Como se puede observar en la definicion del PV de arriba, con la directiva "claimRef" podemos decirle a un PV, a que PVC de debe vincular, indicando nombre y namespace del PVC
+
   * Creamos los directorios que vamos a usar como volumen local en los nodos
     * OJO! la ruta y permisos estan definidos a efectos demostrativos, no usar algo asi en produccion
 
@@ -118,7 +120,7 @@ linux@master01:~$ ssh node01 "sudo mkdir /var/tmp/local-pv; sudo chmod 777 /var/
 linux@master01:~$ ssh node02 "sudo mkdir /var/tmp/local-pv; sudo chmod 777 /var/tmp/local-pv"
 ```
 
-  * Aplicamos la definicion del OPV local
+  * Aplicamos la definicion del PV local
 
 ```bash
 linux@master01:~$ kubectl apply -f  local-pv-node01.yaml 
