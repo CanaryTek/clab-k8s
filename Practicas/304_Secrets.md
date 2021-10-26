@@ -42,7 +42,7 @@ spec:
   - env:
     - name: MYSQL_ROOT_PASSWORD
       value: password123
-    image: mysql
+    image: mysql:5.7
     imagePullPolicy: Always
     name: mysql
     ports:
