@@ -4,11 +4,10 @@ En esta práctica instalaremos un Ingress Controller basado en Nginx y crearemos
 
 ## Instalar Ingress Controller
 
-  * Descargamos los dos ficheros YAML necesarios
+  * Desplegamos la version 1.0.4 del nginx ingress controller (OJO! para versiones de kubernetes 1.22 y superiores)
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.28.0/deploy/static/mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.28.0/deploy/static/provider/baremetal/service-nodeport.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
 ```
 
   * Por defecto el servicio se crea del tipo NodePort. Como tenemos MetalLB instalado como solucion de servicio LoadBalancer, editamos el servicio para cambiar a tipo LoadBalancer
