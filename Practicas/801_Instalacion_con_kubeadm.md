@@ -110,7 +110,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 kubectl get nodes
 ```
 
-  * COmprobamos pods de systema
+  * Comprobamos pods de sistema
 
 ```
 kubectl -n kube-system get pod -o wide
