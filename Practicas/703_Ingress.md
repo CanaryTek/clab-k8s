@@ -119,14 +119,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: "nginx"
   name: my-ingress
 spec:
   rules:
   - http:
       paths:
-      - path: /url
+      - path: /url(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -148,6 +149,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
+    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: my-ingress-host
 spec:
