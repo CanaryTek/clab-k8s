@@ -4,7 +4,7 @@ Para mas informacion
 
 https://kubernetes.io/docs/setup/independent/install-kubeadm/
 
-  * Partimos de 3 maquinas con Ubuntu 18.04
+  * Partimos de 3 maquinas con Ubuntu 20.04
     * Pueden ser máquinas virtuales en VMWare, HyperV, Qemu/KVM, VirtualBox, etc
     * Config red estatica (luego adaptaremos en cada maquina)
     * usuario/clave: linux/linux
@@ -37,6 +37,42 @@ for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo swapoff -a
 for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "free" ; done
 ```
 
+  * Cargar modulos del kernel
+
+```bash
+cat > containerd-modules.conf <<EOF
+overlay
+br_netfilter
+EOF
+for h in master01 node0{1,2}; do echo "*** $h"; cat containerd-modules.conf | ssh linux@$h "sudo tee /etc/modules-load.d/containerd.conf" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo modprobe overlay; sudo modprobe br_netfilter" ; done
+```
+
+  * Configurar systctl
+
+```bash
+cat > kubernetes-sysctl.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+for h in master01 node0{1,2}; do echo "*** $h"; cat kubernetes-sysctl.conf | ssh linux@$h "sudo tee /etc/sysctl.d/kubernetes.conf" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo sysctl --system" ; done
+```
+
+  * Instalar runtime containerd (k8s 1.23 no tiene soporte de docker)
+
+```bash
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h "sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"' ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo apt update; sudo apt install -y containerd.io' ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo mkdir -p /etc/containerd; containerd config default | sudo tee /etc/containerd/config.toml' ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo systemctl restart containerd; sudo systemctl enable containerd; systemctl status  containerd' ; done
+```
+
+## Instalar paquetes k8s
+
   * Instalar repos
 
 ```bash
@@ -48,7 +84,7 @@ for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-add-re
   * Instalar kubeadm
 
 ```bash
-for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-get install -y docker.io kubelet=1.21.5-00 kubeadm=1.21.5-00 kubectl=1.21.5-00; sudo systemctl enable docker" ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo apt-get install -y kubelet=1.23.13-00 kubeadm=1.23.13-00 kubectl=1.23.13-00" ; done
 ```
 
 ## Inicializar cluster
@@ -101,7 +137,7 @@ kubectl get nodes
   * Desplegar plugin de red (weavenet)
 
 ```
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 ```
 
   * Comprobamos nodos, ya deberian aparecer los nodos en estado Ready
