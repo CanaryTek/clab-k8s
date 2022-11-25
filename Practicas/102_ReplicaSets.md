@@ -108,5 +108,5 @@ kubectl apply -f replicaset2.yaml
   * ¿Cual es el problema? (PISTA: hay mas de un error)
   * Arreglarlo para que los Pod arranquen (editando fichero yaml)
     * PISTA 1: En que API se definen los ReplicaSet?
-    * PISTA 2: Recuerda que el ```matchLabels``` del ```seledctor``` debe coincidir con la ```label``` del ```template```
+    * PISTA 2: Recuerda que el ```matchLabels``` del ```selector``` debe coincidir con la ```label``` del ```template```
 
