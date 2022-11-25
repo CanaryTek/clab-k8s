@@ -68,10 +68,10 @@ kubectl apply -f fichero.yaml
 kubectl get pod mypod -o yaml > fichero.yaml
 ```
 
-  * Generar YAML desde comando imperativo, o para ver lo que haría el comando (--dry-run indica que no haga nada)
+  * Generar YAML desde comando imperativo, o para ver lo que haría el comando (--dry-run=client indica que no haga nada)
 
 ```
-kubectl create deploy mydeploy --image nginx --dry-run -o yaml > fichero.yaml
+kubectl create deploy mydeploy --image nginx --dry-run=client -o yaml > fichero.yaml
 ```
 
 ## Practica: Un paseo por el entorno de lab
