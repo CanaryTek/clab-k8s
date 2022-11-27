@@ -45,3 +45,30 @@ kubectl get pod -w
     * Desde el initContainer crear el contenido con "echo 'Hola Mundo' > index.html
     * En el contenedor nginx, montar ese volumen en /usr/share/nginx/html
     * (Hay respuesta ;)
+<detail>
+ apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: init
+  name: init
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+      - name: data
+        mountPath: /usr/share/nginx/html
+  initContainers:
+  - image: busybox
+    name: init1
+    volumeMounts:
+      - name: data
+        mountPath: /mnt
+    command:
+      - "sh"
+      - "-c"
+      - "echo 'Hola Mundo' > /mnt/index.html"
+  volumes:
+      - name: data
+ </detail>
