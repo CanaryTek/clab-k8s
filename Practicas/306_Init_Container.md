@@ -44,10 +44,9 @@ kubectl get pod -w
     * Hay que definir un volumen que monten ambos contenedores
     * Desde el initContainer crear el contenido con "echo 'Hola Mundo' > index.html
     * En el contenedor nginx, montar ese volumen en /usr/share/nginx/html
-    * (Hay respuesta ;)
 
 <details>
- <summary>Respuesta</summary>
+ <summary>Pista</summary>
  
 ```yaml
  apiVersion: v1
