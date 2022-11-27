@@ -48,6 +48,8 @@ kubectl get pod -w
 
 <details>
  <summary>Respuesta</summary>
+ 
+```yaml
  apiVersion: v1
 kind: Pod
 metadata:
@@ -73,4 +75,5 @@ spec:
       - "echo 'Hola Mundo' > /mnt/index.html"
   volumes:
       - name: data
- </details>
+```
+</details>
