@@ -147,6 +147,7 @@ spec:
 
 <details>
  <summary>Pista</summary>
+ 
 ```yaml
 kind: NetworkPolicy
 metadata:
@@ -177,4 +178,5 @@ spec:
         - protocol: TCP
           port: 53
  ```
+ 
 </details>
