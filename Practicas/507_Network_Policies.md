@@ -97,6 +97,7 @@ spec:
 
 <details>
  <summary>Pista</summary>
+ 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
