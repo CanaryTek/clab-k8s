@@ -42,4 +42,8 @@ kubectl describe pod UN_POD_CUALQUIERA --as dev-user1
 
   * ¿Funciona? ¿Por qué?
   * Hacer los cambios necesarios para que funcione (que dev-user1 pueda ver detalles de los pods)
-    * Pista: Editar el role developer (kubectl edit role developer) y añadir "get" a la lista de verbos
+
+<details>
+ <summary>Pista</summary>
+Editar el role developer (kubectl edit role developer) y añadir "get" a la lista de verbos
+</details>
