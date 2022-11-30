@@ -10,12 +10,6 @@ En esta práctica instalaremos un Ingress Controller basado en Nginx y crearemos
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
 ```
 
-  * Por defecto el servicio se crea del tipo NodePort. Como tenemos MetalLB instalado como solucion de servicio LoadBalancer, editamos el servicio para cambiar a tipo LoadBalancer
-
-```
-kubectl -n ingress-nginx edit svc ingress-nginx
-```
-
   * Miramos la IP del servicio y nos conectamos con navegador
 
 ```
@@ -121,9 +115,9 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    kubernetes.io/ingress.class: "nginx"
   name: my-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - http:
       paths:
@@ -135,6 +129,40 @@ spec:
             port:
               number: 80
 ```
+
+<details>
+ <summary>Pista</summary>
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: ingress-path
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /blue(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: blue
+            port:
+              number: 80
+      - path: /green(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: green
+            port:
+              number: 80
+```
+ 
+</details>
 
 ## Configurar Ingress por host
 
@@ -149,10 +177,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: my-ingress-host
 spec:
+  ingressClassName: nginx
   rules:
   - host: host.myapp.local
     http:
@@ -167,6 +195,41 @@ spec:
 ```
 
 **NOTA:** Como no disponemos de DNS, hay que apuntar esos nombres a la IP del servicio ingress-nginx en el fichero hosts de la maquina del alumno. Tambien puede probarse forzando la cabecera Host con curl: curl -H "Host: green.myapp.local" http://IP_SERVICIO_ingress_nginx
+
+<details>
+ <summary>Pista</summary>
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: ingress-host
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: blue.myapp.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: blue
+            port:
+              number: 80
+  - host: green.myapp.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: green
+            port:
+              number: 80
+</details>
 
 ## Significado de externalTrafficPolicy en el Service
 
