@@ -72,8 +72,8 @@ spec:
 
    * Escribir algo al volumen de datos
 
-```
-linux@master01:~$ kubectl exec -ti busybox-sleeper sh
+```bash
+linux@master01:~$ kubectl exec -ti busybox-sleeper -- sh
 / # ls /data
 / # echo "Hola Mundo" > /data/hola.txt
 / # cat /data/hola.txt 
