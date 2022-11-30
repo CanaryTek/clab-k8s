@@ -229,6 +229,8 @@ spec:
             name: green
             port:
               number: 80
+```
+
 </details>
 
 ## Significado de externalTrafficPolicy en el Service
