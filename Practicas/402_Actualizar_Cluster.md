@@ -62,7 +62,7 @@ sudo apt list -a kubeadm
   * Actualizar kubeadm a la version mas nueva disponible
 
 ```
-sudo apt install kubeadm=1.22.2-00 kubelet=1.22.2-00
+sudo apt install kubeadm=1.24.5-00 kubelet=1.24.5-00
 ```
 
   * Verificar plan de actualizacion
@@ -74,7 +74,7 @@ sudo kubeadm upgrade plan
   * Actualizar master a la version mas nueva disponible
 
 ```
-sudo kubeadm upgrade apply v1.22.2
+sudo kubeadm upgrade apply v1.24.5
 ```
 
   * Verificar que durante el proceso no perdemos servicio a la app web
@@ -101,7 +101,7 @@ kubectl drain node01 --ignore-daemonsets --delete-emptydir-data
   * Actualizar kubeadm
 
 ```
-sudo apt install kubeadm=1.22.2-00 kubelet=1.22.2-00
+sudo apt install kubeadm=1.24.5-00 kubelet=1.24.5-00
 ```
 
   * Actualizar configuracion de kubelet
