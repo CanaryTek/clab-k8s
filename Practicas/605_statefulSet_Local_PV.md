@@ -84,7 +84,7 @@ Events:
   * Creamos un PV local asociado al nodo node01. Por las reglas de afinidad que definimos, esto hara que el Pod que esta en estado Pending se arranque donde esta ese PV local, es decir, en node01
 
 ```yaml
-iapiVersion: v1
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: local-pv-node01
