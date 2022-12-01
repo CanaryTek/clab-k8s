@@ -12,7 +12,7 @@ Pistas:
 scp .kube/config linux@192.168.124.1Y0:kubeconfig-grupoX
 ```
 
-  * Incorporar al .cube/config, las secciones cluster y user del otro grupo, modificando nombres para evitar conflictos
+  * Incorporar al .kube/config, las secciones cluster y user del otro grupo, modificando nombres para evitar conflictos
   * Crear una entrada context que relacione el cluster y el user recien incorporados
   * Verificar que funciona cambiando de contexto:
 
