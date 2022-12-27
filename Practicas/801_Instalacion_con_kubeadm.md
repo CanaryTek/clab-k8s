@@ -66,7 +66,7 @@ for h in master01 node0{1,2}; do echo "*** $h"; ssh -t linux@$h "sudo sysctl --s
 for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h "sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates" ; done
 for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -" ; done
 for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"' ; done
-for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo apt update; sudo apt install -y containerd' ; done
+for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo apt update; sudo apt install -y containerd.io' ; done
 for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo mkdir -p /etc/containerd; containerd config default | sudo tee /etc/containerd/config.toml' ; done
 for h in master01 node0{1,2}; do echo "*** $h"; ssh linux@$h 'sudo systemctl restart containerd; sudo systemctl enable containerd; systemctl status  containerd' ; done
 ```
