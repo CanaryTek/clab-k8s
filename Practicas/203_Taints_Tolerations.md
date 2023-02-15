@@ -39,3 +39,34 @@ kubectl taint nodes node2 os=windows:NoSchedule
   * Ver los Taints del master
   * Ver los "Tolerations" de algun Pod que se este ejecutando en el master
   * Definir un Pod que se pueda ejecutar en el master
+
+<details>
+ <summary>Pistas</summary>
+  
+  * Ver detalles de un nodo
+  ```
+  kubectl describe node <nombre_nodo>
+  ```
+  * Ver detalles del pod de etcd
+  ```
+  kubectl -n kube-system describe pod etcd-master01
+  ```
+  * Definir pod con toleration
+  ```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "op"
+    operator: "Exists"
+    effect: "NoExecute"
+  ```
+
+  </details>
