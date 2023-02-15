@@ -1,4 +1,4 @@
-# Practicas de Namespaces
+# Practicas de Servicios
 
 ## Crear Servicio ClusterIP
 
