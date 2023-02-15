@@ -28,5 +28,35 @@ kubectl label nodes node01 size=Large
 
   * Configurar lo necesario para conseguir el siguiente escenario
     * Tener un Pod "red", con imagen nginx, que se ejecute exclusivamente en el nodo01
+    <details>
+<summary>Pista</summary>
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    color: red
+  name: red
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+  tolerations:
+  - key: "color"
+    operator: "Equal"
+    value: "red"
+    effect: "NoSchedule"
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: color
+            operator: In
+            values:
+            - red
+```
+   </details>
+
     * Que cualquier otro Pod (sin necesidad de definir nada en el Pod, se ejecute en el nodo02, o cualquier nodo adicional si aumentamos el cluster
 
