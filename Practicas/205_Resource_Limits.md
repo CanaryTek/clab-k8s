@@ -38,6 +38,11 @@ kubectl apply -f mem-requester.yaml
   * ¿En que estado esta? ¿Por que?
   * Resolverlo (puede ser necesario redefinirlo)
 
+<details>
+ <summary>Pista</summary>
+Ver los recursos asignados al pod y compararlo con los recursos del nodo
+</details>
+
 ## Resolver otro problema
 
   * Crear Pod "mem-user"
