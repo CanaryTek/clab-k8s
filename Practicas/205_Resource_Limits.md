@@ -72,3 +72,8 @@ kubectl apply -f mem-user.yaml
   * ¿En que estado esta? ¿Por que?
   * Resolverlo (puede ser necesario redefinirlo)
 
+<details>
+ <summary>Pista</summary>
+Comprobar límite de memoria necesaria
+</details>           
+
